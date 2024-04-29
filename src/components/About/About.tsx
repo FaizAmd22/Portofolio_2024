@@ -18,6 +18,7 @@ const About = () => {
         alignItems: "center",
         position: "relative",
         zIndex: 0,
+        overflowX: 'hidden'
         // paddingTop: "150px",
       }}
     >
