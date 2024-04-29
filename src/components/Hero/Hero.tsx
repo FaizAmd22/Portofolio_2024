@@ -1,22 +1,17 @@
-import React from "react";
 import { useLayoutEffect, useRef, useEffect, useState } from "react";
-import Navbar from "./components/navbar/Navbar";
 import { Box, Typography } from "@mui/material";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import icon from "../../assets/scroll.gif";
-import eye from '../../assets/eye.gif'
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   const bg1 = useRef(null);
-  const [scrollY, setScrollY] = useState(window.scrollY);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
   console.log(windowHeight);
-  console.log("scroll :", scrollY);
   
   useEffect(() => {
     const handleScroll = () => {

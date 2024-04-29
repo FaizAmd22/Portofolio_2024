@@ -1,9 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Box,
-  Typography,
   List,
   ListItem,
   ListItemText,
@@ -16,7 +15,7 @@ import CloseIcon from "@mui/icons-material/Close";
 // Activate ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
-const Navbar = ({ aboutSectionRef, projectSectionRef, contactSectionRef }) => {
+const Navbar = ({ aboutSectionRef, projectSectionRef, contactSectionRef }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const navbarRef = useRef(null);
   const hamburgerRef = useRef(null);

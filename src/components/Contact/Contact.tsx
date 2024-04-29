@@ -1,5 +1,4 @@
-import React from "react";
-import { Box, Typography, Link, Stack } from "@mui/material";
+import { Box, Link, Stack } from "@mui/material";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaLinkedin } from "react-icons/fa";

@@ -1,6 +1,6 @@
 import "./App.css";
 import { useLayoutEffect, useRef, useEffect, useState } from "react";
-import { Box, Typography, Link, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AOS from "aos";

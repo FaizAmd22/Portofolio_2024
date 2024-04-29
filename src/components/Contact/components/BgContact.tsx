@@ -1,5 +1,4 @@
-import React, { useRef, useEffect } from "react";
-import { Box, Typography, Link, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import icon from "../../../assets/contact.gif";

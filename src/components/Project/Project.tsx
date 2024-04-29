@@ -1,5 +1,5 @@
-import React, { useRef, useEffect, useState } from "react";
-import { Box, Typography, Link, Grid } from "@mui/material";
+import { useRef, useEffect} from "react";
+import { Box, Typography, Grid } from "@mui/material";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import p1 from "../../assets/project01.png";
@@ -13,8 +13,8 @@ import TransitionsModal from "./components/Modal";
 import Mobile from "./components/Mobile";
 
 const Project = () => {
-  const sectionRef = useRef(null);
-  const triggerRef = useRef(null);
+  const sectionRef = useRef<any>(null);
+  const triggerRef = useRef<any>(null);
 
   console.log(window.scrollY);
 

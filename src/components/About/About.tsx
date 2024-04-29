@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Typography, Button, Grid, Stack, Link } from "@mui/material";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaLinkedin } from "react-icons/fa";

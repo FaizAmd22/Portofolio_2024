@@ -1,10 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Box, Typography } from "@mui/material";
 import gsap from "gsap";
-import loading from "../../assets/rocket.gif";
 
 const Loading = () => {
-  const typographyRef = useRef(null);
+  const typographyRef = useRef<any>(null);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -15,7 +14,9 @@ const Loading = () => {
         ease: "power2.out",
         onComplete: () => {
           // Remove the Typography component after the animation is complete
-          typographyRef.current.remove();
+          if (typographyRef.current) {
+            typographyRef.current.remove();
+          }
         },
       });
     }, 1400);
