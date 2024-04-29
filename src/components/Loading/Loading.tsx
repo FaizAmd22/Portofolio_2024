@@ -35,7 +35,7 @@ const Loading = () => {
         justifyContent: "center",
         alignItems: "center",
         // marginLeft: "-8px",
-        margin: 'auto'
+        margin: "auto",
       }}
     >
       <Box sx={{ display: "flex" }} ref={typographyRef}>

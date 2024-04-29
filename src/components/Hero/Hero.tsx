@@ -12,7 +12,7 @@ const Hero = () => {
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
   console.log(windowHeight);
-  
+
   useEffect(() => {
     const handleScroll = () => {
       setWindowHeight(window.pageYOffset);
@@ -31,7 +31,7 @@ const Hero = () => {
         trigger: bg1.current,
         start: "top top",
         // end: `+=${windowHeight + 1000}`,
-        end: 'bottom top',
+        end: "bottom top",
         scrub: true,
       },
     });
@@ -51,7 +51,7 @@ const Hero = () => {
       once: false,
     });
   }, []);
-  
+
   return (
     <>
       <Box
@@ -65,10 +65,10 @@ const Hero = () => {
           transformOrigin: "center center",
           position: "fixed",
           width: "100%",
-          backgroundColor: '#F0ECEC',
+          backgroundColor: "#F0ECEC",
           // flexDirection: 'column',
           perspective: "2200px",
-          opacity: windowHeight > 1700 ? 0 : 1 
+          opacity: windowHeight > 1700 ? 0 : 1,
           // zIndex: 99
         }}
       >
@@ -103,20 +103,28 @@ const Hero = () => {
           }}
         >
           <Box
-            sx={{ marginTop: {xs: '200px', md: "150px"}, textAlign: "center" }}
+            sx={{
+              marginTop: { xs: "200px", md: "150px" },
+              textAlign: "center",
+            }}
             data-aos="zoom-in-down"
           >
-            <Typography sx={{ fontSize: {xs: '20px', md: "60px", lg: "80px"}, marginTop: "-20px" }}>
+            <Typography
+              sx={{
+                fontSize: { xs: "20px", md: "60px", lg: "80px" },
+                marginTop: "-20px",
+              }}
+            >
               Hello! I'm Faizhal Ahmad S.
             </Typography>
 
             <Typography
               sx={{
-                fontSize: {xs: '30px', md: "60px", lg: "80px"},
+                fontSize: { xs: "30px", md: "60px", lg: "80px" },
                 fontWeight: "bold",
                 // backgroundColor: "red",
                 padding: 0,
-                marginTop: {xs: '0px', md: "-20px"},
+                marginTop: { xs: "0px", md: "-20px" },
               }}
             >
               Frontend Developer

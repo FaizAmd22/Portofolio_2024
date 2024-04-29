@@ -7,7 +7,7 @@ import {
   ListItem,
   ListItemText,
   IconButton,
-  Link
+  Link,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
@@ -15,7 +15,11 @@ import CloseIcon from "@mui/icons-material/Close";
 // Activate ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
-const Navbar = ({ aboutSectionRef, projectSectionRef, contactSectionRef }: any) => {
+const Navbar = ({
+  aboutSectionRef,
+  projectSectionRef,
+  contactSectionRef,
+}: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const navbarRef = useRef(null);
   const hamburgerRef = useRef(null);
@@ -51,7 +55,7 @@ const Navbar = ({ aboutSectionRef, projectSectionRef, contactSectionRef }: any) 
     }
   }, [isOpen]);
 
-  const scrollToSection = (ref) => {
+  const scrollToSection = (ref: any) => {
     ref.current.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -63,7 +67,7 @@ const Navbar = ({ aboutSectionRef, projectSectionRef, contactSectionRef }: any) 
         left: 0,
         width: "150px",
         zIndex: 100,
-        overflow: "hidden"
+        overflow: "hidden",
       }}
     >
       <Box
@@ -78,19 +82,15 @@ const Navbar = ({ aboutSectionRef, projectSectionRef, contactSectionRef }: any) 
           backgroundColor: "#222831",
           width: "30px",
           height: "30px",
-          marginLeft: {xs: '10px', md: "50px"},
-          marginTop: {xs: '20px', md:"40px"},
+          marginLeft: { xs: "10px", md: "50px" },
+          marginTop: { xs: "20px", md: "40px" },
           borderRadius: "50%",
-          boxShadow: '2px 2px 5px black',
-          marginBottom: '20px'
+          boxShadow: "2px 2px 5px black",
+          marginBottom: "20px",
         }}
       >
         {/* Hamburger icon */}
-        <IconButton
-          ref={hamburgerRef}
-          color="inherit"
-          onClick={toggleNavbar}
-        >
+        <IconButton ref={hamburgerRef} color="inherit" onClick={toggleNavbar}>
           {isOpen ? <CloseIcon /> : <MenuIcon />}
         </IconButton>
       </Box>
@@ -106,13 +106,13 @@ const Navbar = ({ aboutSectionRef, projectSectionRef, contactSectionRef }: any) 
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          borderRadius: "0 20px 0 0"
+          borderRadius: "0 20px 0 0",
         }}
       >
         <List sx={{ color: "white", padding: 0, margin: 0 }}>
           <ListItem button>
-            <Link href='#' sx={{color: 'white', textDecoration: 'none'}}>
-            <ListItemText primary="Home" />
+            <Link href="#" sx={{ color: "white", textDecoration: "none" }}>
+              <ListItemText primary="Home" />
             </Link>
           </ListItem>
           <ListItem button onClick={() => scrollToSection(aboutSectionRef)}>

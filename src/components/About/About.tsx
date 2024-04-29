@@ -11,7 +11,7 @@ const About = () => {
       sx={{
         marginTop: "50vh",
         paddingBottom: "0vh",
-        height: {xs: 'auto', lg: "100vh"},
+        height: { xs: "auto", lg: "100vh" },
         backgroundColor: "#222831",
         display: "flex",
         justifyContent: "center",
@@ -36,7 +36,7 @@ const About = () => {
           xs={12}
           md={6}
           sx={{
-            height: {xs: 'auto', lg: "100vh"},
+            height: { xs: "auto", lg: "100vh" },
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -50,14 +50,17 @@ const About = () => {
             data-aos-delay="100"
             variant="h2"
             component="h1"
-            sx={{ marginTop: {xs: "50px", md: '0px'}, fontSize: {xs: '50px', lg: '65px'} }}
+            sx={{
+              marginTop: { xs: "50px", md: "0px" },
+              fontSize: { xs: "50px", lg: "65px" },
+            }}
           >
             About Me
           </Typography>
           <Typography
             data-aos="fade-left"
             data-aos-delay="100"
-            sx={{ marginTop: "30px", fontSize: '16px' }}
+            sx={{ marginTop: "30px", fontSize: "16px" }}
           >
             I am a 23-year-old Frontend Developer based in Bandung, Indonesia.
             As a web developer, I have skills in building responsive and
@@ -162,15 +165,15 @@ const About = () => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            order: { xs: 1, md: 2 }
+            order: { xs: 1, md: 2 },
           }}
         >
           <Box
             data-aos="fade-down"
             data-aos-delay="250"
             sx={{
-              width: {xs: '90%', md :'75%', lg:"50%"},
-              height: {xs: '300px', md: "400px"},
+              width: { xs: "90%", md: "75%", lg: "50%" },
+              height: { xs: "300px", md: "400px" },
               backgroundImage: `url(${foto})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
@@ -181,7 +184,11 @@ const About = () => {
             }}
           />
 
-          <Box data-aos="fade-down" data-aos-delay="250" sx={{ width: {xs: '90%', md: "40%"} }}>
+          <Box
+            data-aos="fade-down"
+            data-aos-delay="250"
+            sx={{ width: { xs: "90%", md: "40%" } }}
+          >
             <Link
               href="https://drive.google.com/file/d/1OnmnNt0tiAvlepdJnaHA7ZWU3vQdZLPz/view?usp=sharing"
               target="blank"
@@ -196,7 +203,7 @@ const About = () => {
                   pt: "7px",
                   backgroundColor: "white",
                   fontWeight: "bold",
-                  fontSize: {xs: '15px', lg: "18px"},
+                  fontSize: { xs: "15px", lg: "18px" },
                   borderRadius: "30px",
                   color: "#222831",
                   border: "2px solid #222831",

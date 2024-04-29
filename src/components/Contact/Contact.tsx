@@ -23,7 +23,7 @@ const Contact = () => {
         data-aos="zoom-in-up"
         data-aos-delay="400"
         sx={{
-          marginTop: {xs: '70px', md: "50px"},
+          marginTop: { xs: "70px", md: "50px" },
           // backgroundColor: "red",
           // width: "100%",
           // display: 'flex',
@@ -37,7 +37,7 @@ const Contact = () => {
           sx={{
             // backgroundColor: "white",
             color: "#181818",
-            fontSize: {xs: '32px', md: "50px"},
+            fontSize: { xs: "32px", md: "50px" },
             paddingY: "10px",
             display: "flex",
             justifyContent: "center",
@@ -60,7 +60,7 @@ const Contact = () => {
           sx={{
             // backgroundColor: "white",
             color: "#181818",
-            fontSize: {xs: '32px', md: "50px"},
+            fontSize: { xs: "32px", md: "50px" },
             paddingY: "10px",
             display: "flex",
             justifyContent: "center",
@@ -83,7 +83,7 @@ const Contact = () => {
           sx={{
             // backgroundColor: "white",
             color: "#181818",
-            fontSize: {xs: '32px', md: "50px"},
+            fontSize: { xs: "32px", md: "50px" },
             paddingY: "10px",
             display: "flex",
             justifyContent: "center",
@@ -106,7 +106,7 @@ const Contact = () => {
           sx={{
             // backgroundColor: "white",
             color: "#181818",
-            fontSize: {xs: '32px', md: "50px"},
+            fontSize: { xs: "32px", md: "50px" },
             paddingY: "10px",
             display: "flex",
             justifyContent: "center",
@@ -129,7 +129,7 @@ const Contact = () => {
           sx={{
             // backgroundColor: "white",
             color: "#181818",
-            fontSize: {xs: '32px', md: "50px"},
+            fontSize: { xs: "32px", md: "50px" },
             paddingY: "10px",
             display: "flex",
             justifyContent: "center",
