@@ -23,7 +23,7 @@ const Contact = () => {
         data-aos="zoom-in-up"
         data-aos-delay="400"
         sx={{
-          marginTop: { xs: "70px", md: "50px" },
+          marginTop: { xs: "70px", sm: "150px", md: "110px" },
           // backgroundColor: "red",
           // width: "100%",
           // display: 'flex',

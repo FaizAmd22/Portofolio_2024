@@ -47,7 +47,7 @@ const BgContact = () => {
 
           <Box
             sx={{
-              width: {xs: '100%', lg: "50%"},
+              width: {xs: '100%', sm: "70%", lg: "50%"},
               height: "50%",
               //   width: "20%",
               //   height: "150px",

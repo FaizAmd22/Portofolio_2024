@@ -111,8 +111,8 @@ const Hero = () => {
           >
             <Typography
               sx={{
-                fontSize: { xs: "20px", md: "60px", lg: "80px" },
-                marginTop: "-20px",
+                fontSize: { xs: "20px", md: "40px", xl: "60px" },
+                marginTop: { xs: "-20px", sm:"-110px", md: "-20px"} ,
               }}
             >
               Hello! I'm Faizhal Ahmad S.
@@ -120,7 +120,7 @@ const Hero = () => {
 
             <Typography
               sx={{
-                fontSize: { xs: "30px", md: "60px", lg: "80px" },
+                fontSize: { xs: "30px", md: "40px", xl: "60px" },
                 fontWeight: "bold",
                 // backgroundColor: "red",
                 padding: 0,
@@ -136,7 +136,7 @@ const Hero = () => {
             data-aos-delay="1200"
             sx={{
               width: "20%",
-              height: "150px",
+              height: {xs: "100px", xl: "150px"},
               backgroundImage: `url(${icon})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
