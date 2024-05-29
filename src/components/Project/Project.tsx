@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRef, useEffect} from "react";
 import { Box, Typography, Grid } from "@mui/material";
 import { gsap } from "gsap";
