@@ -22,6 +22,7 @@ const Project = () => {
     {
       name: "Dots.",
       image: p1,
+      link: "https://dots-app-chill.vercel.app",
       source: "https://github.com/FaizAmd22/Dots_App",
       desc: "Dots is a Twitter-inspired web-based social media application, now known as X, that allows users to create and delete threads, post and delete replies, like and unlike content, follow and unfollow other users, search for users, and share link threads.",
     },
