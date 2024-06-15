@@ -127,7 +127,7 @@ const Hero = () => {
                 marginTop: { xs: "0px", md: "-20px" },
               }}
             >
-              Frontend Developer
+              Fullstack Developer
             </Typography>
           </Box>
 
