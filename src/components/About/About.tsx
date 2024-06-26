@@ -18,7 +18,7 @@ const About = () => {
         alignItems: "center",
         position: "relative",
         zIndex: 0,
-        overflowX: 'hidden'
+        overflowX: "hidden",
         // paddingTop: "150px",
       }}
     >
@@ -191,7 +191,7 @@ const About = () => {
             sx={{ width: { xs: "90%", md: "40%" } }}
           >
             <Link
-              href="https://drive.google.com/file/d/1tnrQo3IOfK_6pa_cq5SWMAjfFbRBeoNP/view?usp=sharing"
+              href="https://drive.google.com/file/d/1HObJiFBb6lN8kHE7PtLFuKhtI8pfCRns/view?usp=sharing"
               target="blank"
               sx={{
                 width: "full",
