@@ -63,17 +63,7 @@ const About = () => {
             data-aos-delay="100"
             sx={{ marginTop: "30px", fontSize: "16px" }}
           >
-            I am a 23-year-old Frontend Developer based in Bandung, Indonesia.
-            As a web developer, I have skills in building responsive and
-            engaging user interfaces using various modern technologies such as
-            HTML5, CSS3, and JavaScript (ES6+). I have experience in developing
-            web applications using frameworks like React.js, Next.js, and
-            Vue.js. Additionally, I am proficient in using various tools and
-            frameworks such as Bootstrap, TailwindCSS, Chakra-UI, and
-            Material-UI to create attractive and functional designs. I have
-            worked on projects both individually and as part of a team. I
-            believe that good collaboration with interdisciplinary teams is the
-            key to success in every project.
+            Hello! I am a dedicated Full Stack Developer based in Tangerang Selatan, Banten, Indonesia. With a passion for building responsive and efficient web applications, I specialize in both front-end and back-end development. My expertise includes HTML, CSS, JavaScript, TypeScript, React, Next.js, Node.js, Express, Laravel, as well as databases like PostgreSQL, MySQL, and MongoDB. I thrive on solving complex problems and continuously learning new technologies to create innovative solutions that make a real impact. My experience spans individual projects and collaborative team efforts, and I firmly believe that effective collaboration across disciplines is key to success. I’m always eager to connect with like-minded professionals and explore new opportunities, so feel free to reach out!
           </Typography>
 
           <Stack
