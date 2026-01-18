@@ -90,8 +90,8 @@ function App() {
             <Box
               sx={{
                 height: "100vh",
-                  display: "flex",
-                flexDirection: 'column',
+                display: "flex",
+                flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
               }}
@@ -100,7 +100,7 @@ function App() {
             </Box>
 
             <Box id="Contact" ref={contactSectionRef}>
-                <BgContact />
+              <BgContact />
             </Box>
           </Box>
         </>

@@ -63,7 +63,25 @@ const About = () => {
             data-aos-delay="100"
             sx={{ marginTop: "30px", fontSize: "16px" }}
           >
-            Hello! I am a dedicated Full Stack Developer based in Tangerang Selatan, Banten, Indonesia. With a passion for building responsive and efficient web applications, I specialize in both front-end and back-end development. My expertise includes HTML, CSS, JavaScript, TypeScript, React, Next.js, Node.js, Express, Laravel, as well as databases like PostgreSQL, MySQL, and MongoDB. I thrive on solving complex problems and continuously learning new technologies to create innovative solutions that make a real impact. My experience spans individual projects and collaborative team efforts, and I firmly believe that effective collaboration across disciplines is key to success. I’m always eager to connect with like-minded professionals and explore new opportunities, so feel free to reach out!
+            "I am a results-driven Frontend Engineer with over 2 years of
+            experience specializing in building high-performance, scalable
+            mobile and web applications. I have a proven track record of
+            collaborating closely with UI/UX designers and Backend developers to
+            deliver seamless digital solutions, from complex HRMS platforms to
+            real-time Fleet Management systems.
+            <br />
+            <br />
+            My technical expertise lies in the modern JavaScript ecosystem,
+            including React.js, Next.js, and TypeScript, alongside
+            cross-platform mobile development using Flutter and Cordova. I am
+            passionate about creating intuitive user interfaces and optimizing
+            performance—whether it’s managing real-time GPS data via WebSockets
+            or implementing complex canvas-based route rendering.
+            <br />
+            <br />I believe that effective communication and strong
+            collaboration within interdisciplinary teams are the keys to
+            successfully transforming complex requirements into impactful,
+            user-centric products."
           </Typography>
 
           <Stack
@@ -181,7 +199,7 @@ const About = () => {
             sx={{ width: { xs: "90%", md: "40%" } }}
           >
             <Link
-              href="https://drive.google.com/file/d/1JJ7w0GW1-aYMnRxhS1wPoqbHKshs0X0l/view?usp=sharing"
+              href="https://drive.google.com/file/d/1sUAmv_06d1Rilx6YNXSHDe_B2T2WCdyr/view?usp=sharing"
               target="blank"
               sx={{
                 width: "full",

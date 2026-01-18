@@ -112,7 +112,7 @@ const Hero = () => {
             <Typography
               sx={{
                 fontSize: { xs: "20px", md: "40px", xl: "60px" },
-                marginTop: { xs: "-20px", sm:"-110px", md: "-20px"} ,
+                marginTop: { xs: "-20px", sm: "-110px", md: "-20px" },
               }}
             >
               Hello! I'm Faizhal Ahmad S.
@@ -127,7 +127,7 @@ const Hero = () => {
                 marginTop: { xs: "0px", md: "-20px" },
               }}
             >
-              Fullstack Developer
+              Frontend Developer
             </Typography>
           </Box>
 
@@ -136,7 +136,7 @@ const Hero = () => {
             data-aos-delay="1200"
             sx={{
               width: "20%",
-              height: {xs: "100px", xl: "150px"},
+              height: { xs: "100px", xl: "150px" },
               backgroundImage: `url(${icon})`,
               backgroundSize: "cover",
               backgroundPosition: "center",

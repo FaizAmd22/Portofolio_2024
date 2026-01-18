@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useRef, useEffect} from "react";
+import { useRef, useEffect } from "react";
 import { Box, Typography, Grid } from "@mui/material";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -178,7 +178,7 @@ const Project = () => {
           overflowX: "hidden",
           backgroundColor: "#222831",
           marginTop: "-10px",
-          pt: '50vh',
+          pt: "50vh",
           paddingBottom: "40vh",
         }}
       >
@@ -193,15 +193,20 @@ const Project = () => {
             // fontWeight: "bold",
             marginBottom: "20px",
             margin: "auto",
-            pb: '50px',
-            fontSize: { xs: '50px', lg: '65px' },
+            pb: "50px",
+            fontSize: { xs: "50px", lg: "65px" },
           }}
         >
           What I've Done
         </Typography>
         <Grid container sx={{}}>
           {data.map((item: any, index: number) => (
-            <Grid key={index} xs={6} spacing={2} sx={{width: '100%', margin: 'auto'}}>
+            <Grid
+              key={index}
+              xs={6}
+              spacing={2}
+              sx={{ width: "100%", margin: "auto" }}
+            >
               <Mobile item={item} />
             </Grid>
           ))}
