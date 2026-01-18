@@ -199,7 +199,7 @@ const About = () => {
             sx={{ width: { xs: "90%", md: "40%" } }}
           >
             <Link
-              href="https://drive.google.com/file/d/1sUAmv_06d1Rilx6YNXSHDe_B2T2WCdyr/view?usp=sharing"
+              href="https://drive.google.com/file/d/16hjl7rsiNlJey6m9EXLAwQRbtiGKnbMh/view?usp=sharing"
               target="blank"
               sx={{
                 width: "full",
