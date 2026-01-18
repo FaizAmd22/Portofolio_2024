@@ -45,7 +45,7 @@ const Contact = () => {
             borderRadius: "5px",
             textDecoration: "none",
             gap: 2,
-            transition: "all ease-in 0.4s",
+            transition: "all ease-in 0.2s",
             "&:hover": {
               color: "white",
             },
@@ -68,7 +68,7 @@ const Contact = () => {
             borderRadius: "5px",
             textDecoration: "none",
             gap: 2,
-            transition: "all ease-in 0.4s",
+            transition: "all ease-in 0.2s",
             "&:hover": {
               color: "white",
             },
@@ -91,7 +91,7 @@ const Contact = () => {
             borderRadius: "5px",
             textDecoration: "none",
             gap: 2,
-            transition: "all ease-in 0.4s",
+            transition: "all ease-in 0.2s",
             "&:hover": {
               color: "white",
             },
@@ -114,7 +114,7 @@ const Contact = () => {
             borderRadius: "5px",
             textDecoration: "none",
             gap: 2,
-            transition: "all ease-in 0.4s",
+            transition: "all ease-in 0.2s",
             "&:hover": {
               color: "white",
             },
@@ -137,7 +137,7 @@ const Contact = () => {
             borderRadius: "5px",
             textDecoration: "none",
             gap: 2,
-            transition: "all ease-in 0.4s",
+            transition: "all ease-in 0.2s",
             "&:hover": {
               color: "white",
             },

@@ -63,17 +63,25 @@ const About = () => {
             data-aos-delay="100"
             sx={{ marginTop: "30px", fontSize: "16px" }}
           >
-            I am a 23-year-old Frontend Developer based in Bandung, Indonesia.
-            As a web developer, I have skills in building responsive and
-            engaging user interfaces using various modern technologies such as
-            HTML5, CSS3, and JavaScript (ES6+). I have experience in developing
-            web applications using frameworks like React.js, Next.js, and
-            Vue.js. Additionally, I am proficient in using various tools and
-            frameworks such as Bootstrap, TailwindCSS, Chakra-UI, and
-            Material-UI to create attractive and functional designs. I have
-            worked on projects both individually and as part of a team. I
-            believe that good collaboration with interdisciplinary teams is the
-            key to success in every project.
+            "I am a results-driven Frontend Engineer with over 2 years of
+            experience specializing in building high-performance, scalable
+            mobile and web applications. I have a proven track record of
+            collaborating closely with UI/UX designers and Backend developers to
+            deliver seamless digital solutions, from complex HRMS platforms to
+            real-time Fleet Management systems.
+            <br />
+            <br />
+            My technical expertise lies in the modern JavaScript ecosystem,
+            including React.js, Next.js, and TypeScript, alongside
+            cross-platform mobile development using Flutter and Cordova. I am
+            passionate about creating intuitive user interfaces and optimizing
+            performance—whether it’s managing real-time GPS data via WebSockets
+            or implementing complex canvas-based route rendering.
+            <br />
+            <br />I believe that effective communication and strong
+            collaboration within interdisciplinary teams are the keys to
+            successfully transforming complex requirements into impactful,
+            user-centric products."
           </Typography>
 
           <Stack
@@ -191,7 +199,7 @@ const About = () => {
             sx={{ width: { xs: "90%", md: "40%" } }}
           >
             <Link
-              href="https://drive.google.com/file/d/1HObJiFBb6lN8kHE7PtLFuKhtI8pfCRns/view?usp=sharing"
+              href="https://drive.google.com/file/d/1sUAmv_06d1Rilx6YNXSHDe_B2T2WCdyr/view?usp=sharing"
               target="blank"
               sx={{
                 width: "full",
