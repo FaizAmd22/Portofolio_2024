@@ -12,13 +12,12 @@ import p6 from "../../assets/project06.png";
 import p7 from "../../assets/project07.png";
 import TransitionsModal from "./components/Modal";
 import Mobile from "./components/Mobile";
-import { Observer } from "gsap/Observer";
-
-gsap.registerPlugin(ScrollTrigger, Observer);
 
 const Project = () => {
-  const sectionRef = useRef<HTMLDivElement | null>(null);
-  const triggerRef = useRef<HTMLDivElement | null>(null);
+  const sectionRef = useRef<any>(null);
+  const triggerRef = useRef<any>(null);
+
+  console.log(window.scrollY);
 
   const data = [
     {
@@ -69,130 +68,51 @@ const Project = () => {
     },
   ];
 
+  gsap.registerPlugin(ScrollTrigger);
+
   useEffect(() => {
-    const section = sectionRef.current;
-    const trigger = triggerRef.current;
-    if (!section || !trigger) return;
-
-    const items = Array.from(section.children) as HTMLElement[];
-    if (items.length < 2) return;
-
-    let index = 0;
-    let isAnimating = false;
-
-    // end = jumlah step * tinggi layar -> pinned cukup lama untuk semua item
-    const st = ScrollTrigger.create({
-      trigger,
-      start: "top top",
-      end: () => `+=${(items.length - 1) * window.innerHeight}`,
-      pin: true,
-      pinSpacing: true,
-      anticipatePin: 1,
-      onEnter: () => document.body.classList.add("in-project"),
-      onEnterBack: () => document.body.classList.add("in-project"),
-      onLeave: () => document.body.classList.remove("in-project"),
-      onLeaveBack: () => document.body.classList.remove("in-project"),
-    });
-
-    const getCenterX = (item: HTMLElement) => {
-      const viewportWidth = window.innerWidth;
-      const itemRect = item.getBoundingClientRect();
-      const itemWidth = itemRect.width;
-
-      // offsetLeft relatif ke parent (sectionRef)
-      return -item.offsetLeft + viewportWidth / 2 - itemWidth / 2;
-    };
-
-    const snapTo = (next: number) => {
-      if (isAnimating) return;
-      const clamped = Math.max(0, Math.min(next, items.length - 1));
-      if (clamped === index) return;
-
-      index = clamped;
-      isAnimating = true;
-
-      gsap.to(section, {
-        x: getCenterX(items[index]),
-        duration: 0.7,
-        ease: "power2.out",
-        onComplete: () => {
-          isAnimating = false;
+    const pin = gsap.fromTo(
+      sectionRef.current,
+      {
+        translateX: 0,
+      },
+      {
+        translateX: "-400vw",
+        ease: "none",
+        duration: 1,
+        scrollTrigger: {
+          trigger: triggerRef.current,
+          start: "top top",
+          end: "2000 top",
+          scrub: 1,
+          pin: true,
         },
-      });
-    };
+      }
+    );
 
-    // ... kode st, getCenterX, snapTo sama seperti kamu ...
-
-    let locked = false;
-    let unlockTimer: number | null = null;
-
-    const lock = (ms = 420) => {
-      locked = true;
-      if (unlockTimer) window.clearTimeout(unlockTimer);
-      unlockTimer = window.setTimeout(() => {
-        locked = false;
-      }, ms);
-    };
-
-    const exitDown = () => {
-      // keluar ke bawah: lepas mode project dan dorong scroll melewati end
-      document.body.classList.remove("in-project");
-      // geser scroll sedikit supaya ScrollTrigger benar-benar leave
-      window.scrollTo({ top: st.end + 2, behavior: "auto" });
-      ScrollTrigger.update();
-    };
-
-    const exitUp = () => {
-      document.body.classList.remove("in-project");
-      window.scrollTo({ top: st.start - 2, behavior: "auto" });
-      ScrollTrigger.update();
-    };
-
-    const obs = Observer.create({
-      target: window,
-      type: "wheel,touch,pointer",
-      tolerance: 10,
-      preventDefault: true,
-      allowClicks: true,
-      debounce: true, // ✅ supaya 1 gesture tidak spam
-      ignore: "input, textarea, select, button, [contenteditable]",
-
-      onDown: () => {
-        if (!st.isActive) return;
-        if (locked) return;
-
-        if (index < items.length - 1) {
-          snapTo(index + 1);
-          lock();
-          return;
-        }
-
-        // ✅ sudah terakhir -> keluar ke bawah (Contact)
-        lock();
-        exitDown();
+    // Animate project cards
+    const cards = sectionRef.current.querySelectorAll(".project-card");
+    gsap.fromTo(
+      cards,
+      {
+        opacity: 0,
+        y: 50,
       },
-
-      onUp: () => {
-        if (!st.isActive) return;
-        if (locked) return;
-
-        if (index > 0) {
-          snapTo(index - 1);
-          lock();
-          return;
-        }
-
-        // ✅ sudah pertama -> keluar ke atas (About)
-        lock();
-        exitUp();
-      },
-    });
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.5,
+        scrollTrigger: {
+          trigger: triggerRef.current,
+          start: "top 80%",
+          end: "bottom 20%",
+          scrub: 1,
+        },
+      }
+    );
 
     return () => {
-      if (unlockTimer) window.clearTimeout(unlockTimer);
-      obs.kill();
-      st.kill();
-      document.body.classList.remove("in-project");
+      pin.kill();
     };
   }, []);
 
@@ -207,55 +127,41 @@ const Project = () => {
           display: { xs: "none", md: "flex" },
           flexDirection: "column",
           justifyContent: "center",
-          overflow: "hidden", // ✅ kunci horizontal
+          overflowX: "hidden",
           backgroundColor: "#222831",
           marginTop: "-10px",
+          paddingBottom: "40vh",
         }}
       >
         <Box
           ref={sectionRef}
           sx={{
             height: "70vh",
+            width: "500vw",
             display: "flex",
             flexDirection: "row",
-            flexWrap: "nowrap",
+            posititon: "relative",
             gap: "2.2%",
-            width: "max-content",
-            willChange: "transform",
+            // backgroundColor: "red",
           }}
         >
-          {/* Title dianggap item pertama */}
-          <Box
+          <Typography
+            data-aos="fade-up"
+            // data-aos-delay="100"
+            variant="h2"
+            component="h1"
             sx={{
-              flex: "0 0 auto",
-              minWidth: "100vw",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              width: "35%",
+              textAlign: "center",
+              // fontWeight: "bold",
+              marginBottom: "20px",
+              margin: "auto",
             }}
           >
-            <Typography
-              data-aos="fade-up"
-              variant="h2"
-              component="h1"
-              sx={{ textAlign: "center", margin: "auto" }}
-            >
-              What I've Done
-            </Typography>
-          </Box>
-
-          {data.map((item, index) => (
-            <Box
-              key={index}
-              sx={{
-                flex: "0 0 auto",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <TransitionsModal item={item} />
-            </Box>
+            What I've Done
+          </Typography>
+          {data.map((item: any, index: number) => (
+            <TransitionsModal item={item} key={index} />
           ))}
         </Box>
       </Box>
