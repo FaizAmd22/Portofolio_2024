@@ -5,6 +5,8 @@ import BiproImage from "../../assets/project-bipro.png"
 import BitrackImage from "../../assets/project-bitrack.png"
 import FixworkImage from "../../assets/project-fixwork.png"
 import TmsImage from "../../assets/project-tms.png"
+import FixtrackMobile from "../../assets/project-fixtrack-mobile.png"
+import FixtrackWeb from "../../assets/project-fixtrack-web.png"
 import PerksoImage from "../../assets/project-perkeso.png"
 import DotsImage from "../../assets/project-dots.png"
 import NotifyImage from "../../assets/project-notify.png"
@@ -45,6 +47,23 @@ import Tms01 from "../../assets/projects/tms/01.jpg"
 import Tms02 from "../../assets/projects/tms/02.jpg"
 import Tms03 from "../../assets/projects/tms/03.jpg"
 import Tms04 from "../../assets/projects/tms/04.jpg"
+
+// Fixtrack Mobile
+import FixtrackMobile00 from "../../assets/projects/fixtrack-mobile/00.jpeg"
+import FixtrackMobile01 from "../../assets/projects/fixtrack-mobile/01.jpeg"
+import FixtrackMobile02 from "../../assets/projects/fixtrack-mobile/02.jpeg"
+import FixtrackMobile03 from "../../assets/projects/fixtrack-mobile/03.jpeg"
+import FixtrackMobile04 from "../../assets/projects/fixtrack-mobile/04.jpeg"
+import FixtrackMobile05 from "../../assets/projects/fixtrack-mobile/05.jpeg"
+import FixtrackMobile06 from "../../assets/projects/fixtrack-mobile/06.jpeg"
+
+// Fixtrack Web
+import FixtrackWeb01 from "../../assets/projects/fixtrack-web/01.png"
+import FixtrackWeb02 from "../../assets/projects/fixtrack-web/02.png"
+import FixtrackWeb03 from "../../assets/projects/fixtrack-web/03.png"
+import FixtrackWeb04 from "../../assets/projects/fixtrack-web/04.png"
+import FixtrackWeb05 from "../../assets/projects/fixtrack-web/05.png"
+import FixtrackWeb06 from "../../assets/projects/fixtrack-web/06.png"
 
 // Perkeso
 import Perkseo01 from "../../assets/projects/3p-perkeso/01.jpg"
@@ -217,6 +236,64 @@ export const PROJECTS: ProjectData[] = [
     ],
     thumbnail: TmsImage,
     images: [{ src: Tms01 }, { src: Tms02 }, { src: Tms03 }, { src: Tms04 }],
+    bg: "linear-gradient(135deg, #1f1500 0%, #3a2a00 100%)",
+  },
+  {
+    id: 5,
+    name: "FixTrack Mobile",
+    category: "Fleet Management Platform",
+    year: "2026",
+    role: "Mobile Developer",
+    description:
+      "FixTrack Mobile is the native iOS and Android companion app for the FixTrack fleet tracking platform — built as a standalone mobile project separate from its web dashboard counterpart. It lets fleet operators and field staff track trucks in real time on the map, replay historical trips with synced telemetry charts, and view live in-cab dashcam footage on the go. Built with Flutter and Riverpod, it combines Google Maps and OpenStreetMap-based tracking, WebSocket live video/audio streaming, and Syncfusion analytics charts, with full Bahasa Indonesia/English localization.",
+    features: [
+      "Real-time fleet monitoring map with marker clustering & geofence alerts",
+      "Historical trip playback with animated route and speed control",
+      "Synced telemetry charts for speed, fuel, voltage & temperature",
+      "Multi-channel live dashcam streaming with audio over WebSocket",
+      "Guided vehicle & device onboarding with license plate validation",
+      "Alert notification center with map deep-linking",
+      "Biometric login with secure session storage",
+      "OTP-verified password reset",
+    ],
+    tech: ["Flutter", "Riverpod", "Google Maps", "flutter_map (OpenStreetMap)", "WebSocket", "Syncfusion Flutter Charts", "Media Kit"],
+    links: [],
+    thumbnail: FixtrackMobile,
+    images: [
+      { src: FixtrackMobile00, device: "mobile" },
+      { src: FixtrackMobile01, device: "mobile" },
+      { src: FixtrackMobile02, device: "mobile" },
+      { src: FixtrackMobile03, device: "mobile" },
+      { src: FixtrackMobile04, device: "mobile" },
+      { src: FixtrackMobile05, device: "mobile" },
+      { src: FixtrackMobile06, device: "mobile" },
+    ],
+    bg: "linear-gradient(135deg, #1f1500 0%, #3a2a00 100%)",
+  },
+  {
+    id: 6,
+    name: "FixTrack (Web)",
+    category: "Fleet Management System · Web Dashboard",
+    year: "2025",
+    role: "Frontend Developer",
+    description:
+      "FixTrack Web is the web-based fleet management and GPS tracking dashboard that lets operators monitor their entire vehicle fleet in real time — from live location tracking and dashcam streaming to geofencing, automated alerts, and trip/ritase reporting. Built with Next.js on the frontend and Elysia (Bun) on the backend, with fleet-group-scoped role-based access control for multi-tenant enterprise clients.",
+    features: [
+      "Real-time GPS tracking with live interactive map & speedometer",
+      "Live dashcam streaming with history playback",
+      "Geofence creation with entry/exit violation alerts",
+      "Configurable alert mapping & real-time notifications",
+      "Trip replay and periodic tracking with interactive charts",
+      "POI (point of interest) management by category",
+      "Ritase (trip-cycle) tracking for logistics & hauling fleets",
+      "Role-based access control scoped by fleet group",
+    ],
+    tech: ["Next.js", "TypeScript", "Ant Design", "Tailwind CSS", "TanStack Query", "Leaflet", "ECharts"],
+    links: [
+      { type: "website", url: "https://tracking-dev.treffix.id/" }
+    ],
+    thumbnail: FixtrackWeb,
+    images: [{ src: FixtrackWeb01 }, { src: FixtrackWeb02 }, { src: FixtrackWeb03 }, { src: FixtrackWeb04 }, { src: FixtrackWeb05 }, { src: FixtrackWeb06 }],
     bg: "linear-gradient(135deg, #1f1500 0%, #3a2a00 100%)",
   },
   {

@@ -89,7 +89,7 @@ function App() {
 
     const nameMax = Math.round(clamp(15, vw * 0.042, 64));
     const nameAbout = Math.round(nameMax * 0.7);
-    const lblMax = Math.round(clamp(7, vw * 0.0085, 11));
+    const lblMax = Math.round(clamp(7, vw * 0.0085, 16));
     const lblAbout = Math.round(lblMax * 0.7);
 
     gsap.set(el, {
@@ -325,7 +325,7 @@ function App() {
                   lineHeight: 1,
                 }}
               >
-                +&nbsp;&nbsp;Frontend Developer&nbsp;&nbsp;+
+                +&nbsp;&nbsp;Frontend & Mobile Developer&nbsp;&nbsp;+
               </Typography>
               <Typography
                 sx={{
