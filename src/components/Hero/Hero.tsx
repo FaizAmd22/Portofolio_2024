@@ -1,167 +1,120 @@
-import { useLayoutEffect, useRef, useEffect, useState } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { Box, Typography } from "@mui/material";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import icon from "../../assets/scroll.gif";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
-  const bg1 = useRef(null);
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
-
-  console.log(windowHeight);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setWindowHeight(window.pageYOffset);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const wrapperRef = useRef(null);
+  const zoomGroupRef = useRef(null);
+  const hintRef = useRef(null);
 
   useLayoutEffect(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: bg1.current,
-        start: "top top",
-        // end: `+=${windowHeight + 1000}`,
-        end: "bottom top",
-        scrub: true,
-      },
-    });
+    gsap.set(hintRef.current, { opacity: 0 });
 
-    tl.to(bg1.current, {
-      scale: 45,
-      duration: 2,
-    });
-  }, []);
+    const ctx = gsap.context(() => {
+      gsap.to(hintRef.current, {
+        opacity: 1,
+        duration: 1.5,
+        delay: 2,
+        ease: "power1.in",
+      });
 
-  // removed the useEffect hook that updated the scrollY state
+      gsap.to(zoomGroupRef.current, {
+        scale: 45,
+        ease: "none",
+        scrollTrigger: {
+          trigger: wrapperRef.current,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 0.8,
+        },
+      });
+    }, wrapperRef);
 
-  useEffect(() => {
-    AOS.init({
-      duration: 500,
-      easing: "ease",
-      once: false,
-    });
+    return () => ctx.revert();
   }, []);
 
   return (
-    <>
+    <Box ref={wrapperRef} sx={{ height: "400vh", position: "relative" }}>
       <Box
-        ref={bg1}
         sx={{
-          top: "0",
+          position: "sticky",
+          top: 0,
           height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          transformOrigin: "center center",
-          position: "fixed",
-          width: "100%",
-          backgroundColor: "#F0ECEC",
-          // flexDirection: 'column',
-          perspective: "2200px",
-          opacity: windowHeight > 1700 ? 0 : 1,
-          // zIndex: 99
+          overflow: "hidden",
+          backgroundColor: "var(--white-primary)",
         }}
       >
         <Box
           sx={{
-            height: "60px",
-            backgroundColor: "#222831",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            transformOrigin: "center center",
-            width: "60px",
-            borderRadius: "50%",
-            position: "fixed",
-            // border: '5px dotted #F0ECEC',
-            // boxShadow: "0px 0px 10px red",
-            // zIndex: -1
-          }}
-        />
-        <Box
-          sx={{
-            // textAlign: "center",
-            // backgroundColor: "green",
-            display: "flex",
-            flexDirection: "column",
-            color: "#222831",
-            position: "relative",
-            height: "100vh",
-            justifyContent: "space-between",
-            alignItems: "center",
-            // marginTop: '200px'
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            zIndex: 1,
           }}
         >
           <Box
+            ref={zoomGroupRef}
             sx={{
-              marginTop: { xs: "200px", md: "150px" },
-              textAlign: "center",
+              width: "80px",
+              height: "80px",
+              position: "relative",
+              transformOrigin: "center center",
             }}
-            data-aos="zoom-in-down"
           >
-            <Typography
+            <Box
               sx={{
-                fontSize: { xs: "20px", md: "40px", xl: "60px" },
-                marginTop: { xs: "-20px", sm: "-110px", md: "-20px" },
+                width: "80px",
+                height: "80px",
+                borderRadius: "50%",
+                backgroundColor: "var(--black-primary)",
+              }}
+            />
+            <Box
+              ref={hintRef}
+              sx={{
+                position: "absolute",
+                top: "100px",
+                left: "50%",
+                transform: "translateX(-50%)",
+                pointerEvents: "none",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
-              Hello! I'm Faizhal Ahmad S.
-            </Typography>
-
-            <Typography
-              sx={{
-                fontSize: { xs: "30px", md: "40px", xl: "60px" },
-                fontWeight: "bold",
-                // backgroundColor: "red",
-                padding: 0,
-                marginTop: { xs: "0px", md: "-20px" },
-              }}
-            >
-              Frontend Developer
-            </Typography>
+              <Box
+                sx={{
+                  width: "70px",
+                  height: "70px",
+                  backgroundImage: `url(${icon})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                }}
+              />
+              <Typography
+                sx={{
+                  width: "300px",
+                  textAlign: "center",
+                  fontSize: "22px",
+                  fontStyle: "italic",
+                  fontWeight: 600,
+                  fontFamily: '"Cormorant Garamond", Georgia, serif',
+                }}
+              >
+                Scroll Down / Use Arrow Keys
+              </Typography>
+            </Box>
           </Box>
-
-          <Box
-            data-aos="fade-down"
-            data-aos-delay="1200"
-            sx={{
-              width: "20%",
-              height: { xs: "100px", xl: "150px" },
-              backgroundImage: `url(${icon})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              // backgroundColor: "red",
-              marginTop: "80px",
-              marginBottom: "30px",
-            }}
-          />
         </Box>
       </Box>
-
-      <Box
-        sx={{
-          top: 0,
-          height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {/* <Typography variant="h1" component="h2">
-              Content 1
-            </Typography> */}
-      </Box>
-    </>
+    </Box>
   );
 };
 

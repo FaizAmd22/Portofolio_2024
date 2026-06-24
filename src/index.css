@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  color: #21252B;
-  background-color: rgb(240, 236, 236);
+  
+  --black-primary: #2C2727;
+  --white-primary: #F6F4F4;
+  --orange-primary: #FFC12C;
 }
 
 * {
@@ -11,4 +15,9 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  color: var(--black-primary);
+  background-color: var(--white-primary);
 }

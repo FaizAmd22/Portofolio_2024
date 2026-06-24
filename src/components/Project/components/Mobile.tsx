@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import {
   Backdrop,
@@ -86,7 +87,7 @@ const Mobile = (item: any) => {
         <Fade in={open}>
           <Box
             sx={{
-              position: "absolute" as "absolute",
+              position: "absolute" as const,
               top: "50%",
               left: "50%",
               transform: "translate(-50%, -50%)",
@@ -108,7 +109,7 @@ const Mobile = (item: any) => {
           >
             <Box
               sx={{
-                backgroundColor: "#222831",
+                backgroundColor: "var(--black-primary)",
                 height: "50%",
                 width: "80%",
                 borderRadius: "0 0 20px 20px",

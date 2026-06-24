@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import icon from "../../../assets/contact.gif";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,7 +14,7 @@ const BgContact = () => {
           zIndex: -2,
           width: "100%",
           height: "100vh",
-          backgroundColor: "#FFC12C",
+          backgroundColor: "var(--orange-primary)",
           // backgroundImage: `url(${bg})`,
           // backgroundSize: "cover",
           // backgroundPosition: "center",
@@ -40,27 +39,19 @@ const BgContact = () => {
               justifyContent: "center",
             }}
           >
-            <Typography variant="h2" component="h1" sx={{ color: "black" }}>
+            <Typography
+              variant="h2"
+              component="h1"
+              sx={{
+                color: "var(--black-primary)",
+                fontFamily: '"Cherry Bomb One", system-ui',
+                opacity: 0.85,
+                marginTop: { xs: "15vh", md: 0 },
+              }}
+            >
               Contact
             </Typography>
           </Box>
-
-          <Box
-            sx={{
-              width: {xs: '100%', sm: "70%", lg: "50%"},
-              height: "50%",
-              //   width: "20%",
-              //   height: "150px",
-              backgroundImage: `url(${icon})`,
-              backgroundSize: "cover",
-              //   backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-              //   backgroundAttachment: "fixed",
-              // position: "fixed",
-              // bottom: 0,
-              // right: 0,
-            }}
-          />
         </Box>
       </Box>
     </>

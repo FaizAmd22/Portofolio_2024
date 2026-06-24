@@ -1,217 +1,536 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useRef, useEffect } from "react";
-import { Box, Typography, Grid } from "@mui/material";
+import { useRef, useLayoutEffect, useEffect, useState } from "react";
+import { Box, Typography } from "@mui/material";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import p1 from "../../assets/project01.png";
-import p2 from "../../assets/project02.png";
-import p3 from "../../assets/project03.png";
-import p4 from "../../assets/project04.png";
-import p5 from "../../assets/project05.png";
-import p6 from "../../assets/project06.png";
-import p7 from "../../assets/project07.png";
-import TransitionsModal from "./components/Modal";
-import Mobile from "./components/Mobile";
+import ProjectDetail, { ProjectData } from "./ProjectDetail";
+import { PROJECTS } from "./constant";
 
-const Project = () => {
-  const sectionRef = useRef<any>(null);
-  const triggerRef = useRef<any>(null);
+gsap.registerPlugin(ScrollTrigger);
 
-  console.log(window.scrollY);
+const N = PROJECTS.length;
+const DUR = 0.5;
 
-  const data = [
-    {
-      name: "Dots.",
-      image: p1,
-      link: "https://dots-app-chill.vercel.app",
-      source: "https://github.com/FaizAmd22/Dots_App",
-      desc: "Dots is a Twitter-inspired web-based social media application, now known as X, that allows users to create and delete threads, post and delete replies, like and unlike content, follow and unfollow other users, search for users, and share link threads.",
-    },
-    {
-      name: "Teka",
-      image: p2,
-      source: "https://github.com/teka-org",
-      desc: "Teka (Tebak Kata) is a mobile-based trivia game that can be played multiplayer. This project was developed as a group by 2 Frontend and 2 Backend developers. Some of the features include: login with Google, top-up diamonds, purchase avatars, game matching with users who want to play, and ranking.",
-    },
-    {
-      name: "Notify",
-      image: p3,
-      source: "https://github.com/FaizAmd22/Notify-NextJs-Tailwind-Supabase",
-      link: "https://notify-chill.vercel.app",
-      desc: "Notify is a website-based music player application inspired by Spotify. Some of its features include: login with Google, search for songs, add & remove songs from favorites list, player, and add your own songs.",
-    },
-    {
-      name: "NoFlix",
-      image: p4,
-      source: "https://github.com/FaizAmd22/Movie-App-MERN",
-      link: "https://noflix-chill.vercel.app",
-      desc: "NoFlix is a movie website inspired by Netflix. However, the videos provided are a collection of trailers for the corresponding films. Some of the features include: login & register, adding favorite movies, post reply, Light & dark mode and search by movie, series or people.",
-    },
-    {
-      name: "Simple Cart Next",
-      image: p5,
-      source: "https://github.com/FaizAmd22/Chart-Next-Express-MYSQL",
-      desc: "It is a simple web-based cart application. This application can perform general cart functions such as adding products to the cart, displaying the total amount of products to be purchased, and displaying a list of transaction history.",
-    },
-    {
-      name: "Simple Cart Vue",
-      image: p6,
-      source: "https://github.com/FaizAmd22/Chart-Next-Express-MYSQL",
-      desc: "It is a very simple web-based cart application. This application can perform such as adding products to the cart and displaying the total amount of products to be purchased.",
-    },
-    {
-      name: "MicroLogic",
-      image: p7,
-      source: "https://github.com/FaizAmd22/MicroLogic",
-      link: "https://micro-logic-swart.vercel.app/",
-      desc: "MicroLogic is a website that contains a collection of simple logic using JavaScript. Some of the functions included are countdown, currency conversion, list ofMobile Legends heroes, salary calculation, tic-tac-toe game, word scramble game, and matching card game.",
-    },
-  ];
+interface ProjectProps {
+  onDetailToggle?: (open: boolean) => void;
+}
 
-  gsap.registerPlugin(ScrollTrigger);
+const Project = ({ onDetailToggle }: ProjectProps) => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const bgCoverRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const [active, setActive] = useState(0);
+  const isFirstRender = useRef(true);
+
+  const [detailProject, setDetailProject] = useState<ProjectData | null>(null);
+  const sourceRectRef = useRef<DOMRect | null>(null);
+
+  const imageRefs = useRef<(HTMLDivElement | null)[]>(Array(N).fill(null));
+  const titleRefs = useRef<(HTMLDivElement | null)[]>(Array(N).fill(null));
+  const thumbRefs = useRef<(HTMLDivElement | null)[]>(Array(N).fill(null));
+  const thumbLineRefs = useRef<(HTMLDivElement | null)[]>(Array(N).fill(null));
+
+  useLayoutEffect(() => {
+    if (
+      !wrapperRef.current ||
+      !bgCoverRef.current ||
+      !textRef.current ||
+      !carouselRef.current
+    )
+      return;
+
+    gsap.set([bgCoverRef.current, textRef.current, carouselRef.current], {
+      opacity: 0,
+      visibility: "hidden",
+      pointerEvents: "none",
+    });
+
+    for (let i = 0; i < N; i++) {
+      const on = i === 0;
+      if (imageRefs.current[i])
+        gsap.set(imageRefs.current[i]!, { opacity: on ? 1 : 0 });
+      if (titleRefs.current[i])
+        gsap.set(titleRefs.current[i]!, { opacity: on ? 1 : 0 });
+      if (thumbRefs.current[i])
+        gsap.set(thumbRefs.current[i]!, { opacity: on ? 1 : 0.35 });
+      if (thumbLineRefs.current[i])
+        gsap.set(thumbLineRefs.current[i]!, {
+          scaleX: on ? 1 : 0,
+          opacity: on ? 1 : 0,
+          transformOrigin: "left center",
+        });
+    }
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        bgCoverRef.current,
+        { opacity: 0, visibility: "hidden" },
+        {
+          opacity: 1,
+          visibility: "visible",
+          ease: "none",
+          scrollTrigger: {
+            trigger: wrapperRef.current,
+            start: "top 35%",
+            end: "top 10%",
+            scrub: 0.8,
+            onEnter: () =>
+              gsap.set(bgCoverRef.current, { visibility: "visible" }),
+            onLeaveBack: () =>
+              gsap.set(bgCoverRef.current, {
+                visibility: "hidden",
+                opacity: 0,
+              }),
+          },
+        }
+      );
+      gsap.fromTo(
+        bgCoverRef.current,
+        { opacity: 1 },
+        {
+          opacity: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: wrapperRef.current,
+            start: "bottom 50%",
+            end: "bottom 10%",
+            scrub: 0.8,
+            onLeave: () =>
+              gsap.set(bgCoverRef.current, { visibility: "hidden" }),
+            onEnterBack: () =>
+              gsap.set(bgCoverRef.current, {
+                visibility: "visible",
+                opacity: 1,
+              }),
+          },
+        }
+      );
+
+      gsap.fromTo(
+        textRef.current,
+        { opacity: 0, visibility: "hidden" },
+        {
+          opacity: 1,
+          visibility: "visible",
+          ease: "none",
+          scrollTrigger: {
+            trigger: wrapperRef.current,
+            start: "top 25%",
+            end: "top 5%",
+            scrub: 0.8,
+            onEnter: () => gsap.set(textRef.current, { pointerEvents: "auto" }),
+            onLeaveBack: () =>
+              gsap.set(textRef.current, {
+                pointerEvents: "none",
+                visibility: "hidden",
+              }),
+          },
+        }
+      );
+      gsap.fromTo(
+        textRef.current,
+        { opacity: 1 },
+        {
+          opacity: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: wrapperRef.current,
+            start: "30% top",
+            end: "42% top",
+            scrub: 0.8,
+            onLeave: () =>
+              gsap.set(textRef.current, {
+                pointerEvents: "none",
+                visibility: "hidden",
+              }),
+            onEnterBack: () =>
+              gsap.set(textRef.current, {
+                pointerEvents: "auto",
+                visibility: "visible",
+              }),
+          },
+        }
+      );
+
+      gsap.fromTo(
+        carouselRef.current,
+        { opacity: 0, visibility: "hidden" },
+        {
+          opacity: 1,
+          visibility: "visible",
+          ease: "none",
+          scrollTrigger: {
+            trigger: wrapperRef.current,
+            start: "40% top",
+            end: "52% top",
+            scrub: 0.8,
+            onEnter: () =>
+              gsap.set(carouselRef.current, { pointerEvents: "auto" }),
+            onLeaveBack: () =>
+              gsap.set(carouselRef.current, {
+                pointerEvents: "none",
+                visibility: "hidden",
+              }),
+          },
+        }
+      );
+      gsap.fromTo(
+        carouselRef.current,
+        { opacity: 1 },
+        {
+          opacity: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: wrapperRef.current,
+            start: "bottom 60%",
+            end: "bottom 20%",
+            scrub: 0.8,
+            onLeave: () =>
+              gsap.set(carouselRef.current, {
+                pointerEvents: "none",
+                visibility: "hidden",
+              }),
+            onEnterBack: () =>
+              gsap.set(carouselRef.current, {
+                pointerEvents: "auto",
+                visibility: "visible",
+              }),
+          },
+        }
+      );
+    });
+
+    return () => ctx.revert();
+  }, []);
 
   useEffect(() => {
-    const pin = gsap.fromTo(
-      sectionRef.current,
-      {
-        translateX: 0,
-      },
-      {
-        translateX: "-400vw",
-        ease: "none",
-        duration: 1,
-        scrollTrigger: {
-          trigger: triggerRef.current,
-          start: "top top",
-          end: "2000 top",
-          scrub: 1,
-          pin: true,
-        },
-      }
-    );
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    const ease = "power2.inOut";
+    for (let i = 0; i < N; i++) {
+      const on = i === active;
+      [
+        imageRefs.current[i],
+        titleRefs.current[i],
+        thumbRefs.current[i],
+        thumbLineRefs.current[i],
+      ].forEach((el) => {
+        if (el) gsap.killTweensOf(el);
+      });
+      if (imageRefs.current[i])
+        gsap.to(imageRefs.current[i]!, {
+          opacity: on ? 1 : 0,
+          duration: DUR,
+          ease,
+        });
+      if (titleRefs.current[i])
+        gsap.to(titleRefs.current[i]!, {
+          opacity: on ? 1 : 0,
+          duration: DUR,
+          ease,
+        });
+      if (thumbLineRefs.current[i])
+        gsap.to(thumbLineRefs.current[i]!, {
+          scaleX: on ? 1 : 0,
+          opacity: on ? 1 : 0,
+          duration: DUR,
+          ease,
+        });
+      if (thumbRefs.current[i])
+        gsap.to(thumbRefs.current[i]!, {
+          opacity: on ? 1 : 0.35,
+          duration: DUR,
+          ease,
+        });
+    }
+  }, [active]);
 
-    // Animate project cards
-    const cards = sectionRef.current.querySelectorAll(".project-card");
-    gsap.fromTo(
-      cards,
-      {
-        opacity: 0,
-        y: 50,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        stagger: 0.5,
-        scrollTrigger: {
-          trigger: triggerRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          scrub: 1,
-        },
-      }
-    );
+  const openDetail = () => {
+    const imgEl = imageRefs.current[active];
+    if (imgEl) sourceRectRef.current = imgEl.getBoundingClientRect();
+    onDetailToggle?.(true);
+    setDetailProject(PROJECTS[active]);
+  };
 
-    return () => {
-      pin.kill();
-    };
-  }, []);
+  const closeDetail = () => {
+    onDetailToggle?.(false);
+    setDetailProject(null);
+  };
+
+  const overlayBase = {
+    position: "fixed" as const,
+    inset: 0,
+    opacity: 0,
+    visibility: "hidden" as const,
+    pointerEvents: "none" as const,
+  };
 
   return (
     <>
       <Box
-        ref={triggerRef}
+        ref={bgCoverRef}
         sx={{
-          height: "100vh",
-          color: "white",
-          position: "relative",
-          display: { xs: "none", md: "flex" },
-          flexDirection: "column",
-          justifyContent: "center",
-          overflowX: "hidden",
-          backgroundColor: "#222831",
-          marginTop: "-10px",
-          paddingBottom: "40vh",
+          ...overlayBase,
+          zIndex: 29,
+          backgroundColor: "var(--white-primary)",
         }}
-      >
-        <Box
-          ref={sectionRef}
-          sx={{
-            height: "70vh",
-            width: "500vw",
-            display: "flex",
-            flexDirection: "row",
-            posititon: "relative",
-            gap: "2.2%",
-            // backgroundColor: "red",
-          }}
-        >
-          <Typography
-            data-aos="fade-up"
-            // data-aos-delay="100"
-            variant="h2"
-            component="h1"
-            sx={{
-              width: "35%",
-              textAlign: "center",
-              // fontWeight: "bold",
-              marginBottom: "20px",
-              margin: "auto",
-            }}
-          >
-            What I've Done
-          </Typography>
-          {data.map((item: any, index: number) => (
-            <TransitionsModal item={item} key={index} />
-          ))}
-        </Box>
-      </Box>
+      />
 
-      {/* Mobile */}
       <Box
+        ref={textRef}
         sx={{
-          // height: "auto",
-          color: "white",
-          position: "relative",
-          display: { xs: "block", md: "none" },
-          // flexDirection: "column",
-          // justifyContent: "center",
-          overflowX: "hidden",
-          backgroundColor: "#222831",
-          marginTop: "-10px",
-          pt: "50vh",
-          paddingBottom: "40vh",
+          ...overlayBase,
+          zIndex: 30,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <Typography
-          data-aos="fade-up"
-          // data-aos-delay="100"
-          variant="h2"
-          component="h1"
           sx={{
-            width: "100%",
-            textAlign: "center",
-            // fontWeight: "bold",
-            marginBottom: "20px",
-            margin: "auto",
-            pb: "50px",
-            fontSize: { xs: "50px", lg: "65px" },
+            color: "var(--black-primary)",
+            fontSize: { xs: "36px", md: "52px", lg: "64px" },
+            fontWeight: 300,
+            letterSpacing: "0.05em",
+            fontFamily: '"Cormorant Garamond", Georgia, serif',
+            userSelect: "none",
           }}
         >
           What I've Done
         </Typography>
-        <Grid container sx={{}}>
-          {data.map((item: any, index: number) => (
-            <Grid
-              key={index}
-              xs={6}
-              spacing={2}
-              sx={{ width: "100%", margin: "auto" }}
-            >
-              <Mobile item={item} />
-            </Grid>
-          ))}
-        </Grid>
       </Box>
+
+      <Box
+        ref={carouselRef}
+        sx={{
+          ...overlayBase,
+          zIndex: 30,
+          backgroundColor: "var(--white-primary)",
+        }}
+      >
+        {PROJECTS.map((p, i) => (
+          <Box
+            key={`img-${p.id}`}
+            ref={(el) => {
+              imageRefs.current[i] = el as HTMLDivElement | null;
+            }}
+            onClick={openDetail}
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: {
+                xs: "translate(-50%, -56%)",
+                md: "translate(-40%, -50%)",
+              },
+              width: { xs: "86vw", sm: "58vw", md: "44vw", lg: "42vw" },
+              aspectRatio: "6/5",
+              borderRadius: "4px",
+              overflow: "hidden",
+              zIndex: 2,
+              cursor: "pointer",
+              pointerEvents: i === active ? "auto" : "none",
+              transition: "box-shadow 0.3s ease",
+              "&:hover": { boxShadow: "0 8px 40px rgba(0,0,0,0.15)" },
+            }}
+          >
+            {p.thumbnail ? (
+              <Box
+                component="img"
+                src={p.thumbnail}
+                alt={p.name}
+                sx={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                }}
+              />
+            ) : (
+              <Box
+                sx={{
+                  width: "100%",
+                  height: "100%",
+                  background: p.bg,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography
+                  sx={{
+                    color: "rgba(255,255,255,0.15)",
+                    fontSize: "10px",
+                    letterSpacing: "0.25em",
+                    fontFamily: "Georgia,serif",
+                    textAlign: "center",
+                    px: 2,
+                  }}
+                >
+                  assets/projects/{p.name.toLowerCase()}.jpg
+                </Typography>
+              </Box>
+            )}
+          </Box>
+        ))}
+
+        {PROJECTS.map((p, i) => (
+          <Box
+            key={`title-${p.id}`}
+            ref={(el) => {
+              titleRefs.current[i] = el as HTMLDivElement | null;
+            }}
+            sx={{
+              position: "absolute",
+              bottom: { xs: "27%", md: "15%" },
+              left: { xs: "10%", md: "11%", lg: "12%" },
+              zIndex: 3,
+              userSelect: "none",
+              pointerEvents: "none",
+              whiteSpace: "nowrap",
+              mixBlendMode: "difference",
+            }}
+          >
+            <Typography
+              sx={{
+                fontSize: { xs: "14vw", sm: "11vw", md: "8.5vw", lg: "9vw" },
+                fontWeight: 400,
+                letterSpacing: "0.02em",
+                color: "#FFFFFF",
+                fontFamily: '"Jost", sans-serif',
+                lineHeight: 1,
+              }}
+            >
+              {p.name}
+            </Typography>
+          </Box>
+        ))}
+
+        <Box
+          sx={{
+            position: "absolute",
+            left: { xs: 0, md: "auto" },
+            right: { xs: 0, md: "2.5%" },
+            bottom: { xs: "4%", md: "auto" },
+            top: { xs: "auto", md: "50%" },
+            transform: { xs: "none", md: "translateY(-50%)" },
+            zIndex: 10,
+            display: "flex",
+            flexDirection: { xs: "row", md: "column" },
+            gap: { xs: "8px", md: "10px" },
+            // mobile: scroll horizontal, scrollbar disembunyikan
+            overflowX: { xs: "auto", md: "visible" },
+            px: { xs: "5%", md: 0 },
+            scrollSnapType: { xs: "x mandatory", md: "none" },
+            "&::-webkit-scrollbar": { display: "none" },
+            scrollbarWidth: "none",
+          }}
+        >
+          {PROJECTS.map((p, i) => (
+            <Box
+              key={`thumb-${p.id}`}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-end",
+                cursor: "pointer",
+              }}
+              onClick={() => setActive(i)}
+            >
+              <Box
+                ref={(el) => {
+                  thumbLineRefs.current[i] = el as HTMLDivElement | null;
+                }}
+                sx={{
+                  width: "20px",
+                  height: "1px",
+                  backgroundColor: "var(--black-primary)",
+                  mr: "8px",
+                  flexShrink: 0,
+                }}
+              />
+              <Box
+                ref={(el) => {
+                  thumbRefs.current[i] = el as HTMLDivElement | null;
+                }}
+                sx={{
+                  width: { xs: "68px", md: "90px" },
+                  height: { xs: "48px", md: "64px" },
+                  borderRadius: "2px",
+                  overflow: "hidden",
+                  boxShadow: "0 2px 10px rgba(0,0,0,0.8)",
+                  transition: "transform 0.2s ease",
+                  "&:hover": { transform: "scale(1.05)" },
+                }}
+              >
+                {p.thumbnail ? (
+                  <Box
+                    component="img"
+                    src={p.thumbnail}
+                    alt={p.name}
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      display: "block",
+                    }}
+                  />
+                ) : (
+                  <Box
+                    sx={{ width: "100%", height: "100%", background: p.bg }}
+                  />
+                )}
+              </Box>
+            </Box>
+          ))}
+        </Box>
+
+        {/* <Box
+          sx={{
+            width: "100%",
+            position: "absolute",
+            bottom: 40,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginLeft: { xs: 0, md: "70px" },
+          }}
+        >
+          <Typography
+            sx={{
+              fontWeight: 500,
+              fontSize: "20px",
+              fontFamily: "Josh, serif",
+              textTransform: "uppercase",
+              color: "var(--black-primary)",
+              textAlign: "center",
+              textDecoration: "underline",
+              // borderRadius: "100px",
+              // padding: "5px 30px",
+              // boxShadow: "0 2px 4px black",
+            }}
+          >
+            Show More Project
+          </Typography>
+        </Box> */}
+      </Box>
+
+      <Box
+        ref={wrapperRef}
+        sx={{ height: "300vh", position: "relative", zIndex: 1 }}
+      />
+
+      {detailProject && sourceRectRef.current && (
+        <ProjectDetail
+          project={detailProject}
+          sourceRect={sourceRectRef.current}
+          onClose={closeDetail}
+        />
+      )}
     </>
   );
 };

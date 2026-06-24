@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
 import {
   Backdrop,
@@ -18,7 +19,10 @@ export default function TransitionsModal(item: any) {
     <>
       <Button
         onClick={handleOpen}
-        sx={{ color: "white", "&:hover": { backgroundColor: "#222831" } }}
+        sx={{
+          color: "white",
+          "&:hover": { backgroundColor: "var(--black-primary)" },
+        }}
       >
         <Box
           data-aos="zoom-in-down"
@@ -101,7 +105,7 @@ export default function TransitionsModal(item: any) {
         <Fade in={open}>
           <Box
             sx={{
-              position: "absolute" as "absolute",
+              position: "absolute" as const,
               top: "50%",
               left: "50%",
               transform: "translate(-50%, -50%)",
@@ -123,7 +127,7 @@ export default function TransitionsModal(item: any) {
           >
             <Box
               sx={{
-                backgroundColor: "#222831bc",
+                backgroundColor: "var(--black-primary)bc",
                 height: "80%",
                 width: "30%",
                 borderRadius: "0 20px 20px 0",

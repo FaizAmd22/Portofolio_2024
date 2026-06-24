@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef } from "react";
 import { Box, Typography } from "@mui/material";
 import gsap from "gsap";
@@ -13,7 +14,6 @@ const Loading = () => {
         y: -50,
         ease: "power2.out",
         onComplete: () => {
-          // Remove the Typography component after the animation is complete
           if (typographyRef.current) {
             typographyRef.current.remove();
           }
@@ -21,7 +21,6 @@ const Loading = () => {
       });
     }, 1400);
 
-    // Clean up the timeout on component unmount
     return () => clearTimeout(timeoutId);
   }, []);
 
@@ -35,7 +34,7 @@ const Loading = () => {
         justifyContent: "center",
         alignItems: "center",
         margin: "auto",
-        marginLeft: {xs: "0px", md: '-8px'},
+        // marginLeft: { xs: "0px", md: "-8px" },
       }}
     >
       <Box sx={{ display: "flex" }} ref={typographyRef}>
@@ -54,16 +53,16 @@ const Loading = () => {
         data-aos="zoom-in"
         data-aos-delay="1700"
         sx={{
-          height: "60px",
-          backgroundColor: "#222831",
+          height: "80px",
+          backgroundColor: "var(--black-primary)",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           transformOrigin: "center center",
-          width: "60px",
+          width: "80px",
           borderRadius: "50%",
           position: "fixed",
-          // border: '5px dotted #F0ECEC',
+          // border: '5px dotted var(--white-primary)',
           // boxShadow: "0px 0px 10px red",
           // zIndex: -1
         }}

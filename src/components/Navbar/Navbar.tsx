@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,8 +12,8 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import { FaArrowUp } from "react-icons/fa";
 
-// Activate ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
 const Navbar = ({
@@ -24,20 +25,17 @@ const Navbar = ({
   const navbarRef = useRef(null);
   const hamburgerRef = useRef(null);
 
-  // Function to toggle navbar with animation
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
 
   useEffect(() => {
-    // Animation using GSAP
     gsap.to(navbarRef.current, {
       duration: 0.3,
       height: !isOpen ? 0 : "89.5vh",
       ease: "power1.inOut",
     });
 
-    // Animation for hamburger icon
     if (isOpen) {
       gsap.to(hamburgerRef.current, {
         rotate: 45,
@@ -79,7 +77,7 @@ const Navbar = ({
           paddingRight: "10px",
           padding: "10px",
           color: "white",
-          backgroundColor: "#222831",
+          backgroundColor: "var(--black-primary)",
           width: "30px",
           height: "30px",
           marginLeft: { xs: "10px", md: "50px" },
@@ -89,19 +87,18 @@ const Navbar = ({
           marginBottom: "20px",
         }}
       >
-        {/* Hamburger icon */}
         <IconButton ref={hamburgerRef} color="inherit" onClick={toggleNavbar}>
           {isOpen ? <CloseIcon /> : <MenuIcon />}
         </IconButton>
       </Box>
-      {/* Navbar List */}
+
       <Box
         ref={navbarRef}
         sx={{
           overflow: "hidden",
           transition: "height 0.3s",
           height: isOpen ? "500px" : 0,
-          backgroundColor: "#222831",
+          backgroundColor: "var(--black-primary)",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -112,7 +109,18 @@ const Navbar = ({
         <List sx={{ color: "white", padding: 0, margin: 0 }}>
           <ListItem button>
             <Link href="#" sx={{ color: "white", textDecoration: "none" }}>
-              <ListItemText primary="Home" />
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "50px",
+                  marginTop: "20px",
+                  marginBottom: "20px",
+                }}
+              >
+                <FaArrowUp />
+              </Box>
             </Link>
           </ListItem>
           <ListItem button onClick={() => scrollToSection(aboutSectionRef)}>
