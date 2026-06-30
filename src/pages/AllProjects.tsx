@@ -19,6 +19,9 @@ const ROW_GAP = 9;
 const ZONE_WIDTH = 44;
 const PAIR_ROW_CHANCE = 0.32;
 const WIDE_ROW_CHANCE = 0.16;
+// Mobile stays single-tile-per-row, but the tile itself is capped well
+// under full width (at most ~2/3) so it doesn't read as a full-bleed banner.
+const MOBILE_WIDTH_RANGE: [number, number] = [0.45, 0.65];
 const MANUAL_KEYS = [
   "ArrowDown",
   "ArrowUp",
@@ -56,15 +59,15 @@ function makeZoneSlot(
   zoneLeft: number,
   zoneWidth: number,
   top: number,
-  wide = false
+  wide = false,
+  widthRange?: [number, number]
 ): Slot {
   const project = ORDERED_PROJECTS[index % ORDERED_PROJECTS.length];
   const r1 = seededRandom(index * 97 + 11);
   const r2 = seededRandom(index * 131 + 53);
   const r3 = seededRandom(index * 173 + 29);
-  const width = wide
-    ? zoneWidth * (0.92 + r1 * 0.08)
-    : zoneWidth * (0.7 + r1 * 0.3);
+  const [minF, maxF] = widthRange ?? (wide ? [0.92, 1.0] : [0.7, 1.0]);
+  const width = zoneWidth * (minF + r1 * (maxF - minF));
   const aspect = wide ? 0.38 + r2 * 0.32 : 0.6 + r2 * 0.85;
   const height = width * aspect;
   const left = zoneLeft + (zoneWidth - width) * r3;
@@ -82,7 +85,14 @@ function buildRow(
   if (isMobile) {
     const avail = 100 - margin * 2;
     const idx = nextIndexRef.current++;
-    const slot = makeZoneSlot(idx, margin, avail, top);
+    const slot = makeZoneSlot(
+      idx,
+      margin,
+      avail,
+      top,
+      false,
+      MOBILE_WIDTH_RANGE
+    );
     return { slots: [slot], rowHeight: slot.height };
   }
 

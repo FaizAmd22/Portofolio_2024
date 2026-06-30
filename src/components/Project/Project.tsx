@@ -391,7 +391,7 @@ const Project = ({ onDetailToggle }: ProjectProps) => {
             }}
             sx={{
               position: "absolute",
-              bottom: { xs: "29%", md: "15%" },
+              bottom: { xs: "31%", md: "15%" },
               left: { xs: "10%", md: "11%", lg: "12%" },
               zIndex: 3,
               userSelect: "none",
