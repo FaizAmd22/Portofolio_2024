@@ -297,7 +297,7 @@ export const PROJECTS: ProjectData[] = [
     bg: "linear-gradient(135deg, #1f1500 0%, #3a2a00 100%)",
   },
   {
-    id: 5,
+    id: 7,
     name: "3P Portal",
     category: "InsurTech Web Platform",
     year: "2025",
@@ -321,7 +321,7 @@ export const PROJECTS: ProjectData[] = [
     bg: "linear-gradient(135deg, #1f1500 0%, #3a2a00 100%)",
   },
   {
-    id: 6,
+    id: 8,
     name: "Dots App",
     category: "Social Media Platform",
     year: "2024",
@@ -349,7 +349,7 @@ export const PROJECTS: ProjectData[] = [
     bg: "linear-gradient(135deg, #1f1500 0%, #3a2a00 100%)",
   },
   {
-    id: 7,
+    id: 9,
     name: "Notify",
     category: "Music Streaming Platform",
     year: "2023",
@@ -376,7 +376,7 @@ export const PROJECTS: ProjectData[] = [
     bg: "linear-gradient(135deg, #1f1500 0%, #3a2a00 100%)",
   },
   {
-    id: 8,
+    id: 10,
     name: "NoFlix",
     category: "Movie Discovery Platform",
     year: "2023",

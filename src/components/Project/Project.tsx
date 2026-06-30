@@ -1,14 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRef, useLayoutEffect, useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ProjectDetail, { ProjectData } from "./ProjectDetail";
 import { PROJECTS } from "./constant";
+import { usePageTransition } from "../PageTransition";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const N = PROJECTS.length;
+const VISIBLE_COUNT = 6;
+const DISPLAY_PROJECTS = PROJECTS.slice(0, VISIBLE_COUNT);
+const N = DISPLAY_PROJECTS.length;
 const DUR = 0.5;
 
 interface ProjectProps {
@@ -16,6 +20,7 @@ interface ProjectProps {
 }
 
 const Project = ({ onDetailToggle }: ProjectProps) => {
+  const { go } = usePageTransition();
   const wrapperRef = useRef<HTMLDivElement>(null);
   const bgCoverRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
@@ -253,7 +258,7 @@ const Project = ({ onDetailToggle }: ProjectProps) => {
     const imgEl = imageRefs.current[active];
     if (imgEl) sourceRectRef.current = imgEl.getBoundingClientRect();
     onDetailToggle?.(true);
-    setDetailProject(PROJECTS[active]);
+    setDetailProject(DISPLAY_PROJECTS[active]);
   };
 
   const closeDetail = () => {
@@ -312,7 +317,7 @@ const Project = ({ onDetailToggle }: ProjectProps) => {
           backgroundColor: "var(--white-primary)",
         }}
       >
-        {PROJECTS.map((p, i) => (
+        {DISPLAY_PROJECTS.map((p, i) => (
           <Box
             key={`img-${p.id}`}
             ref={(el) => {
@@ -378,7 +383,7 @@ const Project = ({ onDetailToggle }: ProjectProps) => {
           </Box>
         ))}
 
-        {PROJECTS.map((p, i) => (
+        {DISPLAY_PROJECTS.map((p, i) => (
           <Box
             key={`title-${p.id}`}
             ref={(el) => {
@@ -386,7 +391,7 @@ const Project = ({ onDetailToggle }: ProjectProps) => {
             }}
             sx={{
               position: "absolute",
-              bottom: { xs: "27%", md: "15%" },
+              bottom: { xs: "29%", md: "15%" },
               left: { xs: "10%", md: "11%", lg: "12%" },
               zIndex: 3,
               userSelect: "none",
@@ -430,7 +435,7 @@ const Project = ({ onDetailToggle }: ProjectProps) => {
             scrollbarWidth: "none",
           }}
         >
-          {PROJECTS.map((p, i) => (
+          {DISPLAY_PROJECTS.map((p, i) => (
             <Box
               key={`thumb-${p.id}`}
               sx={{
@@ -489,15 +494,24 @@ const Project = ({ onDetailToggle }: ProjectProps) => {
           ))}
         </Box>
 
-        {/* <Box
+        <Box
+          component={Link}
+          to="/projects"
+          onClick={(e: React.MouseEvent) => {
+            if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+            e.preventDefault();
+            go("/projects");
+          }}
           sx={{
             width: "100%",
             position: "absolute",
-            bottom: 40,
+            top: { xs: 120, lg: "auto" },
+            bottom: { xs: "auto", lg: 40 },
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             marginLeft: { xs: 0, md: "70px" },
+            textDecoration: "none",
           }}
         >
           <Typography
@@ -505,18 +519,18 @@ const Project = ({ onDetailToggle }: ProjectProps) => {
               fontWeight: 500,
               fontSize: "20px",
               fontFamily: "Josh, serif",
-              textTransform: "uppercase",
+              textTransform: "capitalize",
               color: "var(--black-primary)",
               textAlign: "center",
               textDecoration: "underline",
-              // borderRadius: "100px",
-              // padding: "5px 30px",
-              // boxShadow: "0 2px 4px black",
+              fontStyle: "italic",
+              transition: "opacity 0.2s ease",
+              "&:hover": { opacity: 0.65 },
             }}
           >
             Show More Project
           </Typography>
-        </Box> */}
+        </Box>
       </Box>
 
       <Box
